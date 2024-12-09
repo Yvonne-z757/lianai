@@ -5,17 +5,51 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #EC4899;
+  --primary-light: #FCE7F3;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #171717;
+    --foreground: #ffffff;
+    --primary: #F472B6;
+    --primary-light: #FDF2F8;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* 添加 shake 动画 */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.shake {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* 暗色模式优化 */
+.dark .bg-gradient-to-br.from-pink-50.to-purple-50 {
+  background: linear-gradient(to bottom right, rgba(236,72,153,0.1), rgba(168,85,247,0.1));
+}
+
+.dark .text-gray-600 {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dark .text-gray-800 {
+  color: rgba(255, 255, 255, 0.9);
 }
