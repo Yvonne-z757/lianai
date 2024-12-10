@@ -6,8 +6,10 @@ import TestButton from '@/components/home/TestButton';
 import ProductIntro from '@/components/home/ProductIntro';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
   const [name1, setName1] = useState('');
   const [name2, setName2] = useState('');
   const [loading, setLoading] = useState(false);
@@ -27,15 +29,14 @@ export default function Home() {
     
     setLoading(true);
     try {
-      // TODO: 实现测试逻辑
       await new Promise(resolve => setTimeout(resolve, 1500));
+      router.push('/test-analysis');
     } catch (error) {
       console.error('测试失败:', error);
-      // 可以添加错误提示
     } finally {
       setLoading(false);
     }
-  }, [name1, name2]);
+  }, [name1, name2, router]);
 
   return (
     <ErrorBoundary>
